@@ -6,26 +6,48 @@ function useInteraction(canvasRef) {
   React.useEffect(() => {
     const el = canvasRef.current;
     if (!el) return;
+    const getPos = (e, r) => ({
+      x: (e.clientX - r.left) / r.width,
+      y: (e.clientY - r.top) / r.height,
+    });
     const onMove = (e) => {
       const r = el.getBoundingClientRect();
-      setMouse(m => ({ ...m, x: (e.clientX - r.left) / r.width, y: (e.clientY - r.top) / r.height }));
+      setMouse(m => ({ ...m, ...getPos(e, r) }));
     };
     const onDown = (e) => {
       const r = el.getBoundingClientRect();
-      const x = (e.clientX - r.left) / r.width;
-      const y = (e.clientY - r.top) / r.height;
+      const { x, y } = getPos(e, r);
       setMouse(m => ({ ...m, down: true }));
       const id = Date.now() + Math.random();
       setClicks(c => [...c, { id, x, y, born: performance.now() }]);
       setTimeout(() => setClicks(c => c.filter(k => k.id !== id)), 2200);
     };
     const onUp = () => setMouse(m => ({ ...m, down: false }));
+    const onTouchMove = (e) => {
+      const t = e.touches[0]; if (!t) return;
+      const r = el.getBoundingClientRect();
+      setMouse(m => ({ ...m, x: (t.clientX - r.left) / r.width, y: (t.clientY - r.top) / r.height }));
+    };
+    const onTouchStart = (e) => {
+      const t = e.touches[0]; if (!t) return;
+      const r = el.getBoundingClientRect();
+      const x = (t.clientX - r.left) / r.width;
+      const y = (t.clientY - r.top) / r.height;
+      setMouse(m => ({ ...m, x, y, down: true }));
+      const id = Date.now() + Math.random();
+      setClicks(c => [...c, { id, x, y, born: performance.now() }]);
+      setTimeout(() => setClicks(c => c.filter(k => k.id !== id)), 2200);
+    };
     el.addEventListener("mousemove", onMove);
     el.addEventListener("mousedown", onDown);
+    el.addEventListener("touchmove", onTouchMove, { passive: true });
+    el.addEventListener("touchstart", onTouchStart, { passive: true });
     window.addEventListener("mouseup", onUp);
     return () => {
       el.removeEventListener("mousemove", onMove);
       el.removeEventListener("mousedown", onDown);
+      el.removeEventListener("touchmove", onTouchMove);
+      el.removeEventListener("touchstart", onTouchStart);
       window.removeEventListener("mouseup", onUp);
     };
   }, [canvasRef]);

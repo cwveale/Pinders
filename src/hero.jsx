@@ -19,7 +19,7 @@ function Hero({ onEstimate }) {
   const current = WALLPAPERS.find(w => w.id === wallpaper) || WALLPAPERS[0];
 
   return (
-    <section id="top" style={{
+    <section id="top" className="hero-section" style={{
       position: "relative", minHeight: "100vh",
       background: "var(--ink)", overflow: "hidden", color: "var(--bone)",
       display: "flex", flexDirection: "column", justifyContent: "flex-end",
@@ -143,8 +143,9 @@ function Hero({ onEstimate }) {
 
       <style>{`
         @media (max-width: 900px) {
+          .hero-section { justify-content: flex-start !important; padding-top: 96px !important; }
           .hero-grid { grid-template-columns: 1fr !important; }
-          .hero-right { justify-content: flex-start !important; }
+          .hero-right { display: none !important; }
           .stats-row { grid-template-columns: repeat(2, 1fr) !important; }
           .hide-sm { display: none !important; }
         }
