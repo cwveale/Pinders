@@ -10,5 +10,11 @@
   },
   "compatibility_flags": [
     "nodejs_compat"
+  ],
+  "routes": [
+    {
+      "pattern": "pinder.ourweek.app",
+      "custom_domain": true
+    }
   ]
 }
