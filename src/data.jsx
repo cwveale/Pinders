@@ -1,0 +1,55 @@
+// Shared data + content
+const DATA = {
+  business: {
+    name: "Pinder's",
+    full: "Pinder's Property Maintenance",
+    tagline: "Grounds keeping for the Pine Barrens and beyond.",
+    since: 2008,
+    zip: "08053",
+    town: "Marlton, New Jersey",
+    phone: "(609) 555-0142",
+    email: "hello@pinderspm.com",
+    hours: "Mon–Sat · 7a–6p",
+  },
+  services: [
+    { id: "lawn", title: "Lawn Care", lede: "Weekly mowing, edging, blowing. A machine-precise cut with a human eye.", price: "from $55/visit", items: ["Mow & edge", "Fertilization program", "Aeration & overseed", "Weed & grub control"] },
+    { id: "beds", title: "Gardens & Beds", lede: "Seasonal plantings, mulch refresh, and shrub pruning that holds its shape all year.", price: "from $380", items: ["Annual & perennial install", "Mulch & stone top-dress", "Pruning & shaping", "Weed suppression"] },
+    { id: "hardscape", title: "Hardscape", lede: "Paver walks, fire pits, retaining walls. Built to outlive the mortgage.", price: "by estimate", items: ["Paver patios & walks", "Retaining walls", "Fire features", "Drainage solutions"] },
+    { id: "cleanup", title: "Seasonal Cleanups", lede: "Spring wake-up, fall leaf haul, snow & ice when the weather turns.", price: "from $275", items: ["Spring cleanup", "Leaf removal", "Gutter clearing", "Snow & salt"] },
+    { id: "trees", title: "Tree & Shrub", lede: "Pruning, removal, stump grinding. Licensed, insured, and tidy about it.", price: "by estimate", items: ["Crown thinning", "Storm damage", "Stump grinding", "Tree removal"] },
+    { id: "irrigation", title: "Irrigation", lede: "Install, winterize, repair. Every head dialed to the inch.", price: "from $180", items: ["Spring start-up", "Winterization", "Head & valve repair", "Smart controllers"] },
+  ],
+  portfolio: [
+    { id: 1, title: "Colonial in Kings Grant", tag: "Full property", year: 2025, img: "colonial", span: "wide" },
+    { id: 2, title: "Paver walk · Evesham", tag: "Hardscape", year: 2025, img: "paver", span: "tall" },
+    { id: 3, title: "Cottage bed refresh", tag: "Gardens", year: 2024, img: "beds", span: "reg" },
+    { id: 4, title: "Backyard retreat", tag: "Design / build", year: 2024, img: "patio", span: "reg" },
+    { id: 5, title: "Estate hedging", tag: "Pruning", year: 2024, img: "hedge", span: "wide" },
+    { id: 6, title: "Stone & boxwood", tag: "Gardens", year: 2023, img: "stone", span: "reg" },
+    { id: 7, title: "Fall cleanup — 4 acres", tag: "Cleanup", year: 2023, img: "fall", span: "tall" },
+    { id: 8, title: "Front walk rebuild", tag: "Hardscape", year: 2023, img: "walk", span: "reg" },
+  ],
+  areas: [
+    { zip: "08053", town: "Marlton", primary: true },
+    { zip: "08055", town: "Medford" },
+    { zip: "08088", town: "Vincentown" },
+    { zip: "08003", town: "Cherry Hill E" },
+    { zip: "08054", town: "Mount Laurel" },
+    { zip: "08048", town: "Lumberton" },
+    { zip: "08046", town: "Willingboro" },
+    { zip: "08052", town: "Maple Shade" },
+  ],
+  testimonials: [
+    { quote: "Six years on the books. Our lawn has never looked better and the crew treats the yard like it's theirs.", name: "Dana & Michael R.", place: "Kings Grant · Marlton", rating: 5 },
+    { quote: "They built our back patio in a week and still show up every Thursday. That's rare.", name: "Steven P.", place: "Medford Lakes", rating: 5 },
+    { quote: "After a storm took down two oaks, Pinder's had the yard cleared and cleaner than before by sundown.", name: "Priya K.", place: "Mount Laurel", rating: 5 },
+    { quote: "Honest pricing, sharp edges, and they remember the dog's name. Can't beat it.", name: "The Halloran family", place: "Evesham", rating: 5 },
+  ],
+  stats: [
+    { k: "17", v: "years in Burlington Co." },
+    { k: "420+", v: "active properties" },
+    { k: "4.9★", v: "on Google & Facebook" },
+    { k: "24 hr", v: "estimate turnaround" },
+  ],
+};
+window.DATA = DATA;
