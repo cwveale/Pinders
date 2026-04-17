@@ -33,15 +33,15 @@ function Hero({ onEstimate }) {
         pointerEvents: "none", zIndex: 1,
       }}/>
 
-      <div style={{
+      <div className="hide-sm" style={{
         position: "absolute", top: 100, left: 0, right: 0, zIndex: 3,
         display: "flex", justifyContent: "center", gap: 28,
         color: "var(--sage)", fontFamily: "var(--mono)", fontSize: 11, letterSpacing: "0.15em",
         textTransform: "uppercase", pointerEvents: "none",
       }}>
         <span>◉ Booking {season} 2026</span>
-        <span className="hide-sm">{greeting}, Marlton · 68°F · Clear</span>
-        <span className="hide-sm">Wallpaper: {current.name.toLowerCase()}</span>
+        <span>{greeting}, Marlton · 68°F · Clear</span>
+        <span>Wallpaper: {current.name.toLowerCase()}</span>
       </div>
 
       <div style={{ position: "relative", zIndex: 3, maxWidth: 1400, margin: "0 auto", padding: "0 28px", width: "100%", pointerEvents: "none" }}>
@@ -64,7 +64,7 @@ function Hero({ onEstimate }) {
               fontSize: 17, lineHeight: 1.55, maxWidth: 480,
               color: "rgba(242,237,226,0.8)", marginBottom: 36,
             }}>
-              Family-run, environmentally friendly grounds care in Burlington County since 2008. Weekly mowing, gardens, hardscape — and, yes, the hero background is interactive. Move your mouse. Click around.
+              Family-run, environmentally friendly grounds care in Burlington County since 2008. Weekly mowing, gardens, hardscape — all handled by the same crew, season after season.<span className="hide-sm"> The background is interactive — move your mouse.</span>
             </p>
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
               <button onClick={onEstimate} style={{

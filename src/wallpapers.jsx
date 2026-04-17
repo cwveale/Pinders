@@ -459,33 +459,85 @@ function WallpaperHost({ id }) {
 }
 
 function WallpaperPicker({ value, onChange }) {
+  const [open, setOpen] = React.useState(false);
+  const current = WALLPAPERS.find(w => w.id === value) || WALLPAPERS[0];
+
   return (
-    <div style={{
-      position: "absolute", bottom: 28, left: "50%", transform: "translateX(-50%)",
-      zIndex: 5,
-      background: "rgba(11,20,16,0.55)", backdropFilter: "blur(20px)",
-      border: "1px solid var(--line)", borderRadius: 999,
-      padding: 6, display: "flex", gap: 2,
-    }}>
-      {WALLPAPERS.map(w => (
-        <button key={w.id} onClick={() => onChange(w.id)} style={{
-          padding: "8px 16px", borderRadius: 999, fontSize: 12,
-          fontFamily: "var(--sans)",
-          background: value === w.id ? "var(--lime)" : "transparent",
-          color: value === w.id ? "var(--ink)" : "var(--bone)",
+    <>
+      {/* Desktop: full pill bar */}
+      <div className="wp-desktop" style={{
+        position: "absolute", bottom: 28, left: "50%", transform: "translateX(-50%)",
+        zIndex: 5,
+        background: "rgba(11,20,16,0.55)", backdropFilter: "blur(20px)",
+        border: "1px solid var(--line)", borderRadius: 999,
+        padding: 6, display: "flex", gap: 2,
+      }}>
+        {WALLPAPERS.map(w => (
+          <button key={w.id} onClick={() => onChange(w.id)} style={{
+            padding: "8px 16px", borderRadius: 999, fontSize: 12,
+            fontFamily: "var(--sans)",
+            background: value === w.id ? "var(--lime)" : "transparent",
+            color: value === w.id ? "var(--ink)" : "var(--bone)",
+            transition: "all .2s",
+            display: "flex", flexDirection: "column", alignItems: "center", lineHeight: 1.1,
+            minWidth: 90,
+          }}>
+            <span style={{ fontWeight: 500 }}>{w.name}</span>
+            <span style={{
+              fontFamily: "var(--mono)", fontSize: 8, letterSpacing: "0.1em",
+              textTransform: "uppercase", marginTop: 3,
+              opacity: value === w.id ? 0.7 : 0.5,
+            }}>{w.sub}</span>
+          </button>
+        ))}
+      </div>
+
+      {/* Mobile: FAB + popover */}
+      <div className="wp-mobile" style={{ position: "absolute", bottom: 24, right: 20, zIndex: 5 }}>
+        {open && (
+          <div style={{
+            position: "absolute", bottom: "calc(100% + 10px)", right: 0,
+            background: "rgba(11,20,16,0.92)", backdropFilter: "blur(20px)",
+            border: "1px solid var(--line)", borderRadius: 14,
+            padding: 8, display: "flex", flexDirection: "column", gap: 2, minWidth: 150,
+          }}>
+            <div className="mono" style={{ fontSize: 9, color: "var(--sage)", padding: "4px 10px 8px", letterSpacing: "0.12em", textTransform: "uppercase" }}>
+              Background
+            </div>
+            {WALLPAPERS.map(w => (
+              <button key={w.id} onClick={() => { onChange(w.id); setOpen(false); }} style={{
+                padding: "10px 12px", borderRadius: 8, fontSize: 14,
+                fontFamily: "var(--sans)", textAlign: "left",
+                background: value === w.id ? "var(--lime)" : "transparent",
+                color: value === w.id ? "var(--ink)" : "var(--bone)",
+                fontWeight: value === w.id ? 500 : 400,
+                transition: "all .15s",
+              }}>
+                {w.name}
+              </button>
+            ))}
+          </div>
+        )}
+        <button onClick={() => setOpen(o => !o)} style={{
+          width: 44, height: 44, borderRadius: 999,
+          background: open ? "var(--lime)" : "rgba(11,20,16,0.65)",
+          backdropFilter: "blur(16px)",
+          border: "1px solid var(--line)",
+          color: open ? "var(--ink)" : "var(--lime)",
+          fontSize: 18, lineHeight: 1,
+          display: "flex", alignItems: "center", justifyContent: "center",
           transition: "all .2s",
-          display: "flex", flexDirection: "column", alignItems: "center", lineHeight: 1.1,
-          minWidth: 90,
-        }}>
-          <span style={{ fontWeight: 500 }}>{w.name}</span>
-          <span style={{
-            fontFamily: "var(--mono)", fontSize: 8, letterSpacing: "0.1em",
-            textTransform: "uppercase", marginTop: 3,
-            opacity: value === w.id ? 0.7 : 0.5,
-          }}>{w.sub}</span>
-        </button>
-      ))}
-    </div>
+        }}>✦</button>
+      </div>
+
+      <style>{`
+        .wp-mobile { display: none; }
+        @media (max-width: 820px) {
+          .wp-desktop { display: none !important; }
+          .wp-mobile { display: block; }
+        }
+      `}</style>
+    </>
   );
 }
 

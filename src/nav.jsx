@@ -70,12 +70,52 @@ function Nav({ onEstimate }) {
             onMouseEnter={e => { e.currentTarget.style.background = "#d6e88a"; }}
             onMouseLeave={e => { e.currentTarget.style.background = "var(--lime)"; }}
             >Free estimate <Icon.arrow/></button>
+            <button onClick={() => setOpen(o => !o)} className="mobile-menu-btn" aria-label="Menu" style={{
+              width: 40, height: 40, borderRadius: 8,
+              background: open ? "var(--lime)" : "rgba(255,255,255,0.08)",
+              color: open ? "var(--ink)" : "var(--bone)",
+              display: "none", alignItems: "center", justifyContent: "center",
+              flexDirection: "column", gap: 5, padding: "10px 8px",
+              transition: "background .2s",
+            }}>
+              <span style={{ display: "block", width: 18, height: 1.5, background: "currentColor", borderRadius: 2, transition: "transform .2s, opacity .2s", transform: open ? "translateY(3.25px) rotate(45deg)" : "none" }}/>
+              <span style={{ display: "block", width: 18, height: 1.5, background: "currentColor", borderRadius: 2, opacity: open ? 0 : 1, transition: "opacity .2s" }}/>
+              <span style={{ display: "block", width: 18, height: 1.5, background: "currentColor", borderRadius: 2, transition: "transform .2s, opacity .2s", transform: open ? "translateY(-3.25px) rotate(-45deg)" : "none" }}/>
+            </button>
           </div>
         </div>
       </header>
+
+      {open && (
+        <div style={{
+          position: "fixed", top: 64, left: 0, right: 0, zIndex: 49,
+          background: "rgba(11,20,16,0.97)", backdropFilter: "blur(20px)",
+          borderBottom: "1px solid var(--line)",
+          padding: "12px 0 24px",
+        }} className="mobile-menu-overlay" onClick={() => setOpen(false)}>
+          {links.map(([label, href]) => (
+            <a key={href} href={href} style={{
+              display: "block", padding: "14px 28px",
+              fontSize: 20, fontWeight: 400, color: "var(--bone)",
+              borderBottom: "1px solid rgba(255,255,255,0.06)",
+              fontFamily: "var(--serif)",
+            }}>{label}</a>
+          ))}
+          <div style={{ padding: "20px 28px 0" }}>
+            <a href="tel:6095550142" style={{
+              display: "flex", alignItems: "center", gap: 8,
+              fontSize: 14, color: "var(--sage)",
+            }}>
+              <Icon.phone/> (609) 555-0142
+            </a>
+          </div>
+        </div>
+      )}
+
       <style>{`
         @media (max-width: 820px) {
           .desktop-nav { display: none !important; }
+          .mobile-menu-btn { display: flex !important; }
         }
       `}</style>
     </>
