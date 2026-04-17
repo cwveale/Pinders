@@ -7,14 +7,14 @@ function Portfolio() {
     ["maintenance", "Maintenance"],
     ["hardscape", "Hardscape"],
     ["gardens", "Gardens"],
-    ["cleanup", "Cleanups"],
+    ["design", "Design / build"],
   ];
 
   const filterMap = {
     maintenance: ["Full property", "Pruning"],
-    hardscape: ["Hardscape", "Design / build"],
+    hardscape: ["Hardscape"],
     gardens: ["Gardens"],
-    cleanup: ["Cleanup"],
+    design: ["Design / build"],
   };
 
   const visible = DATA.portfolio.filter(p => filter === "all" || filterMap[filter]?.includes(p.tag));
@@ -77,7 +77,10 @@ function Portfolio() {
                 transform: hovered === p.id ? "scale(1.04)" : "scale(1)",
                 transition: "transform .8s cubic-bezier(.2,.8,.2,1)",
               }}>
-                <Scene kind={p.img} ratio={p.span === "tall" ? "3/4" : p.span === "wide" ? "2/1" : "1/1"}/>
+                {p.photo
+                  ? <img src={p.photo} alt={p.title} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}/>
+                  : <Scene kind={p.img} ratio={p.span === "tall" ? "3/4" : p.span === "wide" ? "2/1" : "1/1"}/>
+                }
               </div>
               <div style={{
                 position: "absolute", inset: 0,

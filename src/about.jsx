@@ -8,7 +8,8 @@ function About({ onEstimate }) {
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 60, alignItems: "center" }} className="about-grid">
           <div style={{ position: "relative" }}>
             <div style={{ aspectRatio: "4/5", borderRadius: 4, overflow: "hidden" }}>
-              <Scene kind="hedge" ratio="4/5" label="Crew · summer 2025"/>
+              <img src="/assets/photos/eddie-and-brother.jpg" alt="Eddie Pinder and his brother"
+                   style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top", display: "block" }}/>
             </div>
             <div style={{
               position: "absolute", bottom: -30, right: -30,
@@ -47,7 +48,7 @@ function About({ onEstimate }) {
               <em style={{ fontStyle: "italic", fontWeight: 300, color: "var(--moss)" }}>actually landscape.</em>
             </h2>
             <div style={{ fontSize: 16, lineHeight: 1.65, color: "rgba(11,20,16,0.75)", display: "grid", gap: 16, marginBottom: 32 }}>
-              <p>Rob Pinder grew up mowing his neighbors' lawns in Marlton. Seventeen years later, his crew of eight still works within the same handful of zip codes — same trucks, same day of the week, same knock on the door.</p>
+              <p>Eddie Pinder grew up mowing his neighbors' lawns in Marlton. Seventeen years later, him and his brother still work within the same handful of zip codes — same trucks, same day of the week, same knock on the door.</p>
               <p>We stayed small on purpose. It means your estimate is done by the owner, the crew leader knows your dog, and a dead shrub doesn't get lost in a ticket queue.</p>
             </div>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24, paddingTop: 28, borderTop: "1px solid var(--line-dark)" }}>
